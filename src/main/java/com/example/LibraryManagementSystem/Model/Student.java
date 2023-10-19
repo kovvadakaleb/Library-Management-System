@@ -22,6 +22,9 @@ public class Student {
 
     int age;
 
+    @Column(unique = true,nullable = false)
+    String email;
+
     @Enumerated(EnumType.STRING)
     Department department;
 

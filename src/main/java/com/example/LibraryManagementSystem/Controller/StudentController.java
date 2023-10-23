@@ -1,5 +1,7 @@
 package com.example.LibraryManagementSystem.Controller;
 
+import com.example.LibraryManagementSystem.DTO.requsetDTO.StudentRequest;
+import com.example.LibraryManagementSystem.DTO.responseDTO.StudentResponse;
 import com.example.LibraryManagementSystem.Model.Student;
 import com.example.LibraryManagementSystem.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +18,14 @@ public class StudentController {
     @Autowired
     StudentService studentService;
     @PostMapping("/add")
-    public ResponseEntity addStudent(@RequestBody Student student){
-         String response = studentService.addStudent(student);
+    public ResponseEntity addStudent(@RequestBody StudentRequest studentRequest){
+         StudentResponse response = studentService.addStudent(studentRequest);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/get")
     public ResponseEntity getStudent(@RequestParam("id") int regNo){
-       String response = studentService.getStudent(regNo);
+       StudentResponse response = studentService.getStudent(regNo);
        if(response!=null) {
            return new ResponseEntity(response,HttpStatus.CREATED);
        }
@@ -36,18 +38,22 @@ public class StudentController {
     }
 
     @GetMapping("/get-all")
-    public List<String> getAllStudent(){
+    public List<StudentResponse> getAllStudent(){
         return studentService.getAllStudent();
     }
 
 
     @GetMapping("/get-allmale")
-    public List<String> getAllMaleStudents(){
+    public List<StudentResponse> getAllMaleStudents(){
         return studentService.getAllMaleStudents();
     }
 
     @PutMapping("/update-age/{regNo}")
-    public String updateAge(@PathVariable int regNo,@RequestParam("age") int age){
-        return studentService.updateAge(regNo,age);
+    public ResponseEntity updateAge(@PathVariable int regNo,@RequestParam("age") int age){
+        StudentResponse studentResponse =  studentService.updateAge(regNo,age);
+        if(studentResponse!=null){
+            return new ResponseEntity(studentResponse,HttpStatus.CREATED);
+        }
+        return new ResponseEntity("Invalid regNo",HttpStatus.NOT_FOUND);
     }
 }

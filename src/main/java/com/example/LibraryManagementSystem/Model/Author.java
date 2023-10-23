@@ -3,7 +3,9 @@ package com.example.LibraryManagementSystem.Model;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,9 @@ public class Author {
 
     @Column(unique = true,nullable = false)
     String email;
+
+    @CreationTimestamp
+    Date lastActivity;
 
     int age;
 

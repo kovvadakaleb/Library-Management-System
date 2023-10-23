@@ -9,6 +9,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.util.List;
+
 
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -16,7 +18,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
-@Table(name="LibrarycardDetails")
+@Table(name = "LibrarycardDetails")
 public class Librarycard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,9 @@ public class Librarycard {
 
     @OneToOne
     @JoinColumn
-
     Student student;
+
+    @OneToMany(mappedBy = "librarycard",cascade = CascadeType.ALL)
+    List<Transaction> transactionList;
 
 }

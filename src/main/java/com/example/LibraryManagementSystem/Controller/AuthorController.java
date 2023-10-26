@@ -2,9 +2,7 @@ package com.example.LibraryManagementSystem.Controller;
 
 import com.example.LibraryManagementSystem.DTO.requsetDTO.AuthorRequest;
 import com.example.LibraryManagementSystem.DTO.responseDTO.AuthorResponse;
-import com.example.LibraryManagementSystem.Model.Author;
-import com.example.LibraryManagementSystem.Service.AuthorService;
-import com.example.LibraryManagementSystem.exception.AuthorNotFoundException;
+import com.example.LibraryManagementSystem.Service.Impl.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
 
     @Autowired
-    AuthorService authorService;
+    AuthorServiceImpl authorServiceImpl;
     @PostMapping("/add")
     public ResponseEntity addAuthor(@RequestBody AuthorRequest authorRequest) {
-        AuthorResponse authorResponse =  authorService.addAuthor(authorRequest);
+        AuthorResponse authorResponse =  authorServiceImpl.addAuthor(authorRequest);
         return new ResponseEntity(authorResponse, HttpStatus.CREATED);
     }
 }

@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class StudentResponse {
     String name;
 
@@ -22,7 +23,5 @@ public class StudentResponse {
     Gender gender;
 
     LibraryCardResponse libraryCardResponse;
-
-    String Message;
 
 }

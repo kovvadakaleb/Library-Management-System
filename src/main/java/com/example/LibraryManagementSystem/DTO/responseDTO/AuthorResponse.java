@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class AuthorResponse {
 
     String authorName;
@@ -19,10 +20,8 @@ public class AuthorResponse {
 
     int age;
 
-    String Message;
-
     Date LastActivity;
 
-    List<BookResponse> booksList;
+    List<String> booksList;
 
 }

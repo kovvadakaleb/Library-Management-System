@@ -11,8 +11,9 @@ import java.util.List;
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
+@Builder
 public class Book {
 
     @Id
@@ -26,7 +27,7 @@ public class Book {
     @Enumerated(EnumType.STRING)
     Genre genre;
 
-    String Availbility;
+    String availability;
 
     int cost;
 

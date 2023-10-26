@@ -1,10 +1,8 @@
 package com.example.LibraryManagementSystem.DTO.responseDTO;
 
-import com.example.LibraryManagementSystem.Enum.CardStatus;
+import com.example.LibraryManagementSystem.Enum.TransactionStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.sql.Date;
 
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -12,10 +10,18 @@ import java.sql.Date;
 @Getter
 @Setter
 @Builder
-public class LibraryCardResponse {
+public class TransactionResponse {
+
+    String transactionNo;
+
+    TransactionStatus transactionStatus;
+
+    String studentName;
+
     String cardNo;
 
-    CardStatus cardStatus;
+    String bookName;
 
-    Date issueDate;
+    String authorName;
+
 }

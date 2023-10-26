@@ -13,7 +13,7 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     List<Book> findByGenre(Genre genre);
 
 
-    @Query(value = "select b from Book b where b.genre =:genre and b.cost >=:cost")
+    @Query(value = "select b from Book b where b.genre =:genre and b.cost > :cost")
     List<Book> allBooksOfGenreAndGreaterThanCost500(Genre genre,int cost);
 
     @Query(value = "select c from Book c where c.no_of_pages >:a and c.no_of_pages <:b")

@@ -4,11 +4,14 @@ import com.example.LibraryManagementSystem.Enum.Genre;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class BookResponse {
     String title;
 
@@ -16,12 +19,11 @@ public class BookResponse {
 
     Genre genre;
 
-   String Availbility;
+    String availability;
 
-    int cost;
+   int cost;
 
-    String authorName;
+   List<String> transactionList;
 
-    String Message;
-
+   String authorName;
 }

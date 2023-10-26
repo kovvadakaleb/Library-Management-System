@@ -14,6 +14,8 @@ import com.example.LibraryManagementSystem.exception.BookNotFoundException;
 import com.example.LibraryManagementSystem.exception.IssueException;
 import com.example.LibraryManagementSystem.exception.StudentNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -25,6 +27,9 @@ public class TransactionServiceImpl implements TransactionService {
     StudentRepository studentRepository;
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
     @Autowired
     TransactionRepository transactionRepository;
@@ -61,6 +66,19 @@ public class TransactionServiceImpl implements TransactionService {
 
         TransactionResponse transactionResponse = TransactionTransformer.TransactionToTransactionResponse(savedTransaction);
 
+
+
+        String text = "Thank You "+student.getName()+" for borrowing book from BOOK HEAVEN\n"+"BookTitle:"+book.getTitle()+
+                      "\nAuthor:"+book.getAuthor().getAuthorName()+"\n"+"Duration:90Days\n"+"ExtensionPeriod:5days\n"+"Penalty:Rs.10perday after ExtensionPeriod\n"+
+                      " \n     Happy Reading!!";
+
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("kaleb916020@gmail.com");
+        simpleMailMessage.setTo(student.getEmail());
+        simpleMailMessage.setSubject("Congrats bookworm!! Issued Done*");
+        simpleMailMessage.setText(text);
+
+        javaMailSender.send(simpleMailMessage);
         return transactionResponse;
     }
 
